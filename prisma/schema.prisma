@@ -1,0 +1,44 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id       String  @id @default(uuid())
+  email    String  @unique
+  name     String
+  password String
+  Manga    Manga[]
+
+  @@map("users")
+}
+
+model Manga {
+  id           String         @id @default(uuid())
+  name         String
+  users        User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId       String
+  ImagensManga ImagensManga[]
+
+  @@map("mangas")
+}
+
+model ImagensManga {
+  id      String @id @default(uuid())
+  url     String
+  mangas  Manga  @relation(fields: [mangaId], references: [id], onDelete: Cascade)
+  mangaId String
+}
+
+model Post {
+  id          String @id @default(uuid())
+  news        String
+  description String
+}
