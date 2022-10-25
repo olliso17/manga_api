@@ -1,4 +1,6 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Roles } from 'src/auth/decorators/roles.decorator';
+import { Role } from 'src/auth/enums/role.enum';
 import { User } from './entities/user.entity';
 import { UserService } from './user.service';
 
@@ -7,13 +9,19 @@ export class UserController {
   constructor(private readonly userService: UserService) {}
 
   @Post('create')
-  createUser(@Body() createUserDto: User) {
-    return this.userService.createUser(createUserDto);
+  createUser(@Body() createUser: User) {
+    return this.userService.createUser(createUser);
+  }
+
+  @Roles(Role.Admin)
+  @Post('createAdmin')
+  createAdmin(@Body() createAdim: User) {
+    return this.userService.createAdmin(createAdim);
   }
 
   @Get()
-  findAll() {
-    return this.userService.findAll();
+  findAllUser() {
+    return this.userService.findAllUser();
   }
 
   @Get(':id')

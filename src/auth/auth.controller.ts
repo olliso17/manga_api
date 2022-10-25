@@ -3,7 +3,7 @@ import { AuthService } from './auth.service';
 import { IsPublic } from './decorators/is-public.decorator';
 import { LocalAuthGuard } from './guards/local-auth.guard';
 import { AuthRequest } from './models/AuthRequest';
-import {ApiTags} from '@nestjs/swagger';
+// import {ApiTags} from '@nestjs/swagger';
 
 
 @Controller()
@@ -12,7 +12,7 @@ export class AuthController {
     constructor(private authService: AuthService) { }    
     
     
-    @ApiTags('login')
+    // @ApiTags('login')
     @IsPublic()
     @Post('login') 
     //status 200ok
