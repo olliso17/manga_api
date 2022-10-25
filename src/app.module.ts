@@ -9,9 +9,10 @@ import { AuthModule } from './auth/auth.module';
 import { APP_GUARD, APP_INTERCEPTOR } from '@nestjs/core';
 import { JwtAuthGuard } from './auth/guards/jwt-auth.guard';
 import { RolesGuard } from './auth/guards/roles.guard';
+import { CaslModule } from './casl/casl.module';
 
 @Module({
-  imports: [UserModule, MangaModule, PostModule, ImagensMangaModule, AuthModule],
+  imports: [UserModule, MangaModule, PostModule, ImagensMangaModule, AuthModule, CaslModule],
   controllers: [AppController],
   providers: [AppService,{
     provide: APP_INTERCEPTOR,

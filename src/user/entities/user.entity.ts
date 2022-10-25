@@ -3,10 +3,11 @@ import {IsString, MinLength, MaxLength, Matches} from "class-validator"
 import { Role } from "src/auth/enums/role.enum";
 
 export class User implements UserDto {
-    roles: Role[];
+    // roles: Role[];
     id: string;
     email: string;
     name: string;
+    isAdmin: boolean;
     @IsString()
     @MinLength(4)
     @MaxLength(20)
@@ -14,4 +15,5 @@ export class User implements UserDto {
         message: 'password too weak',
     })
     password: string;
+    
 }
